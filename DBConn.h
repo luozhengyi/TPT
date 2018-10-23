@@ -13,11 +13,23 @@ public:
 
 public:
 	void Init();
+	/*
+	 *@fun:  connect
+	 *@desc: connect to database
+	 *@para:
+	 *@ret:  0:success others:error code
+	 */
 	int connect(const char* const host,const short port,
 		    const char* const user,const char* const pwd,
 		    const char* const db);
 
 public:
+	/*
+	 *@fun:  query
+	 *@desc: query to database
+	 *@para: parsecb:query result parse callback fun; sqlCmd:sql commad
+	 *@ret:  0:success others:error code
+	 */
 	int query(parsecb parse,const char* const sqlCmd);
 	
 

@@ -17,7 +17,7 @@ DBConn.o: DBConn.cpp DBConn.h
 
 
 
-login.o:login.cpp login.h
+login.o:login.cpp login.h errorcode.h
 	$(cc) -g -c login.cpp
 
 testLogin.o:testLogin.cpp login.h
