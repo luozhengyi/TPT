@@ -1,6 +1,6 @@
 #include <iostream>
-#include "DBConn.h"
-#include "errorcode.h"
+#include <TPT/DBConn.h>
+#include <TPT/errorcode.h>
 
 DBConn::DBConn():host(nullptr),port(0),user(nullptr),pwd(nullptr),
 		 db(nullptr),conn(nullptr),bConn(false)

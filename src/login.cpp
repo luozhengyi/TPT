@@ -1,7 +1,7 @@
-#include "login.h"
+#include <TPT/login.h>
 #include <unistd.h>	//close()
 #include <string.h>	//bzero()
-#include "errorcode.h"
+#include <errorcode.h>
 
 login::login()
 {
