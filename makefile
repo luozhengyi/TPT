@@ -9,21 +9,14 @@ testLogin.out:$(obj2)
 
 
 
-DBTester.o: DBTester.cpp DBConn.h
-	$(cc) -c DBTester.cpp 
-DBConn.o: DBConn.cpp DBConn.h
-	$(cc) -c DBConn.cpp 
+DBTester.o: DBConn.h
+DBConn.o: DBConn.h
 
 
 
 
-login.o:login.cpp login.h errorcode.h
-	$(cc) -g -c login.cpp
-
-testLogin.o:testLogin.cpp login.h
-	$(cc) -g -c testLogin.cpp
-
-
+login.o: login.h errorcode.h
+testLogin.o: login.h
 
 
 clean:
