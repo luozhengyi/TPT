@@ -1,30 +1,37 @@
-cc = g++
-obj1 = DBConn.o DBTester.o 
-obj2 = login.o testLogin.o
+CC  = gcc
+CXX = g++
 
-TPTServer.out: $(obj1)
-	$(cc) -o DBTester.out $(obj1) -lmysqlclient
-testLogin.out:$(obj2) 
-	$(cc) -g -o testLogin.out $(obj2)
-
+SRC_DIR = ./src
+INC_DIR = ./include
+TEST_DIR = ./test
+BIN_DIR = ./bin
 
 
-DBTester.o: DBTester.cpp DBConn.h
-	$(cc) -c DBTester.cpp 
-DBConn.o: DBConn.cpp DBConn.h
-	$(cc) -c DBConn.cpp 
+ALL: $(BIN_DIR)/DBTester.out $(BIN_DIR)/testLogin.out
+.PHONY: ALL
+
+OBJ1 = DBConn.o DBTester.o 
+OBJ2 = login.o  testLogin.o
+
+# generate DBTester.out
+$(BIN_DIR)/DBTester.out: $(OBJ1)
+	$(CXX) -o $(BIN_DIR)/DBTester.out $(OBJ1) -lmysqlclient
+
+DBTester.o: $(INC_DIR)/DBConn.h
+	$(CXX) -c  $(TEST_DIR)/DBTester.cpp
+DBConn.o: $(INC_DIR)/DBConn.h
+	$(CXX) -c  $(SRC_DIR)/DBConn.cpp 
 
 
+# generate testLogin.out
+$(BIN_DIR)/testLogin.out: $(OBJ2)
+	$(CXX) -o $(BIN_DIR)/testLogin.out $(OBJ2)
 
-
-login.o:login.cpp login.h errorcode.h
-	$(cc) -g -c login.cpp
-
-testLogin.o:testLogin.cpp login.h
-	$(cc) -g -c testLogin.cpp
-
-
+login.o: $(INC_DIR)/login.h
+	$(CXX) -c $(SRC_DIR)/login.cpp
+testLogin.o: $(INC_DIR)/login.h
+	$(CXX) -c $(TEST_DIR)/testLogin.cpp
 
 
 clean:
-	rm -rf $(obj1) $(obj2)
+	rm -rf $(OBJ1) $(OBJ2) 

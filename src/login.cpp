@@ -2,6 +2,7 @@
 #include <unistd.h>	//close()
 #include <string.h>	//bzero()
 #include <TPT/errorcode.h>
+#include <TPT/errorcode.h>
 
 login::login()
 {
