@@ -1,23 +1,21 @@
-cc = g++
+CC  = gcc
+CXX = g++
+
+SRC_DIR = ./src
+INC_DIR = ./include
+TEST_DIR = ./test
+BIN_DIR = ./bin
+
 obj1 = DBConn.o DBTester.o 
-obj2 = login.o testLogin.o
 
-TPTServer.out: $(obj1)
-	$(cc) -o DBTester.out $(obj1) -lmysqlclient
-testLogin.out:$(obj2) 
-	$(cc) -g -o testLogin.out $(obj2)
+$(BIN_DIR)/TPTServer.out: $(obj1)
+	$(CXX) -o $(BIN_DIR)/DBTester.out $(obj1) -lmysqlclient
 
-
-
-DBTester.o: DBConn.h
-DBConn.o: DBConn.h
-
-
-
-
-login.o: login.h errorcode.h
-testLogin.o: login.h
+DBTester.o: $(INC_DIR)/DBConn.h
+	$(CXX) -c  $(TEST_DIR)/DBTester.cpp
+DBConn.o: $(INC_DIR)/DBConn.h
+	$(CXX) -c  $(SRC_DIR)/DBConn.cpp 
 
 
 clean:
-	rm -rf $(obj1) $(obj2)
+	rm -rf $(obj1) 

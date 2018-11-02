@@ -1,7 +1,7 @@
 #include <iostream>
 #include <mysql/mysql.h>
-#include "DBConn.h"
-#include "errorcode.h"
+#include <TPT/DBConn.h>
+#include <TPT/errorcode.h>
 
 int parse(MYSQL_RES* sqlRes)
 {
