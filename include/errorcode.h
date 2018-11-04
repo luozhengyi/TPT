@@ -12,6 +12,7 @@ enum ErrCode
 	INVALID_FD    = -30,	//invalid fd
 	BIND_FAILED   = -31,	//bind failed
 	LISTEN_FAILED = -32,	//listen failed
+	ACCEPT_FAILED = -32,	// accept failed
 
 	
 

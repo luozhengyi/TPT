@@ -1,6 +1,6 @@
 #include <TPT/login.h>
 #include <unistd.h>	//close()
-#include <string.h>	//bzero()
+#include <strings.h>	//bzero()
 #include <TPT/errorcode.h>
 #include <TPT/errorcode.h>
 
@@ -55,7 +55,7 @@ int login::start()
 			clientfd = accept(fd,(sockaddr*)&addrClient,(socklen_t*)&len);
 			if(INVALID_SOCK == clientfd)
 			{
-				iRet = -7;	//accpet failed
+				iRet = ACCEPT_FAILED;	//accept failed
 				break;
 			}
 

@@ -32,6 +32,7 @@ login.o: $(INC_DIR)/login.h
 testLogin.o: $(INC_DIR)/login.h
 	$(CXX) -c $(TEST_DIR)/testLogin.cpp
 
-
+.PHONY: clean
 clean:
 	rm -rf $(OBJ1) $(OBJ2) 
+	
