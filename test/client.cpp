@@ -59,11 +59,12 @@ int main(int argc, char* argv[])
 	int fd = -1;
 	do
 	{
+		/*
 		if(argc < 3)
 		{
 			std::cout<<"no enough args!"<<std::endl;
 			break;
-		}
+		}*/
 		if((fd = socket(AF_INET,SOCK_STREAM,0))<0)
 		{
 			std::cout<<"create fd failed!"<<std::endl;
@@ -74,6 +75,12 @@ int main(int argc, char* argv[])
 		addrSrv.sin_family = AF_INET;
 		parseAddr("addrlist",addrSrv.sin_addr.s_addr,addrSrv.sin_port); 
 
+		//connect
+		if(connect(fd,(sockaddr*)&addrSrv,sizeof(addrSrv))<0)
+		{
+			std::cout<<"connection failed!"<<std::endl;
+			break;
+		}
 
 
 	}while(0);

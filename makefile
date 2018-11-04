@@ -7,32 +7,43 @@ TEST_DIR = ./test
 BIN_DIR = ./bin
 
 
-ALL: $(BIN_DIR)/DBTester.out $(BIN_DIR)/testLogin.out
+ALL: $(BIN_DIR)/DBTester.out $(BIN_DIR)/server.out $(BIN_DIR)/client.out
 .PHONY: ALL
 
 OBJ1 = DBConn.o DBTester.o 
-OBJ2 = login.o  testLogin.o
+OBJ2 = login.o  server.o
+OBJ3 = client.o
 
 # generate DBTester.out
 $(BIN_DIR)/DBTester.out: $(OBJ1)
 	$(CXX) -o $(BIN_DIR)/DBTester.out $(OBJ1) -lmysqlclient
 
-DBTester.o: $(INC_DIR)/DBConn.h
+DBTester.o: $(TEST_DIR)/DBTester.cpp $(INC_DIR)/DBConn.h
 	$(CXX) -c  $(TEST_DIR)/DBTester.cpp
-DBConn.o: $(INC_DIR)/DBConn.h
+DBConn.o:   $(SRC_DIR)/DBConn.cpp    $(INC_DIR)/DBConn.h
 	$(CXX) -c  $(SRC_DIR)/DBConn.cpp 
 
 
-# generate testLogin.out
-$(BIN_DIR)/testLogin.out: $(OBJ2)
-	$(CXX) -o $(BIN_DIR)/testLogin.out $(OBJ2)
+# generate server.out
+$(BIN_DIR)/server.out: $(OBJ2)
+	$(CXX) -o $(BIN_DIR)/server.out $(OBJ2)
 
-login.o: $(INC_DIR)/login.h
+login.o:  $(SRC_DIR)/login.cpp   $(INC_DIR)/login.h
 	$(CXX) -c $(SRC_DIR)/login.cpp
-testLogin.o: $(INC_DIR)/login.h
-	$(CXX) -c $(TEST_DIR)/testLogin.cpp
+server.o: $(TEST_DIR)/server.cpp $(INC_DIR)/login.h
+	$(CXX) -c $(TEST_DIR)/server.cpp
+
+
+# generate client.out
+$(BIN_DIR)/client.out: $(OBJ3)
+	$(CXX) -o $(BIN_DIR)/client.out $(OBJ3)
+
+client.o: $(TEST_DIR)/client.cpp
+	$(CXX) -c $(TEST_DIR)/client.cpp
+
+
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJ1) $(OBJ2) 
+	rm -rf $(OBJ1) $(OBJ2) $(OBJ3)
 	
