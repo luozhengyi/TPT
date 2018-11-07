@@ -36,10 +36,10 @@ server.o: $(TEST_DIR)/server.cpp $(INC_DIR)/login.h
 
 # generate client.out
 $(BIN_DIR)/client.out: $(OBJ3)
-	$(CXX) -o $(BIN_DIR)/client.out $(OBJ3)
+	$(CXX) -o $@ $<
 
 client.o: $(TEST_DIR)/client.cpp
-	$(CXX) -c $(TEST_DIR)/client.cpp
+	$(CXX) -c $<
 
 
 
