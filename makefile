@@ -16,7 +16,7 @@ OBJ3 = client.o
 
 # generate DBTester.out
 $(BIN_DIR)/DBTester.out: $(OBJ1)
-	$(CXX) -o $(BIN_DIR)/DBTester.out $(OBJ1) -lmysqlclient
+	$(CXX) -o $@ $^ -lmysqlclient
 
 DBTester.o: $(TEST_DIR)/DBTester.cpp $(INC_DIR)/DBConn.h
 	$(CXX) -c  $(TEST_DIR)/DBTester.cpp
