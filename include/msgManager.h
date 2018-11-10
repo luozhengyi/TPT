@@ -1,43 +1,53 @@
-#include<iostream>
-#include<cstring>
+#ifndef __MSGMANAGER_H__
+#define __MSGMANAGER_H__
+
 
 enum msgtype{
+	E_INIT = 0,
+	E_SIGNIN,
+	E_SIGNUP,
 	E_LOGIN,
 	E_LOGOUT,
 	E_MSG,
-	E_SIGNIN,
-	E_SIGNUP
+	E_INVAILD
 
 };
 
-struct msg{
-	msgtype type;
-	unsigned char paramnum;
-	char memory[1024];
-	msg(){};
-};
-
-void fun()
+class MsgManager
 {
-#if defined(__linux__)
-	std::cout<<"Linux"<<std::endl;
-#elif defined(_WIN32)
-	std::cout<<"windows"<<std::endl;
-#endif
+#define MEM_LEN 1024
+union un_msg{
+	char memory[MEM_LEN];
+	struct {
+		msgtype type;		//message type
+		unsigned char paramnum;	//parameter num
+		unsigned char msglen;	//message len
+	}head;
+};
+public:
+	MsgManager();
+	virtual ~MsgManager();
 	
-}
+public:
+	unsigned char GetMsgLen();
 
-int main(int argc, char* argv[])
-{
-	int iRet = 0;
+	msgtype GetMsgType();
 
-	msg message;
-	message.type = E_SIGNIN;
+	unsigned char GetParamNum();
 
-	memcpy(message.memory,"haseef414",sizeof("haseef414")+1);
+public:
+	bool ConstructMsg(msgtype type,unsigned char paramnum,...);
 
-	fun();
+	bool DeconstructMsg();
 
-	return iRet;
-}
+	bool VerifyMsg();
 
+
+
+private:
+	un_msg msg;
+
+};
+
+
+#endif  //__MSGMANAGER_H__
