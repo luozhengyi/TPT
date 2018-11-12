@@ -38,7 +38,7 @@ int DBConn::connect(const char* const host, const short port,
 		if(host == nullptr || user == nullptr || pwd == nullptr ||
 		   db == nullptr)
 		{
-			iRet = NULL_PARA_PTR;
+			iRet = EC_NULL_PARA_PTR;
 			break;
 		}
 
@@ -71,7 +71,7 @@ int DBConn::query(parsecb parse,const char* const sqlCmd)
 			break;
 		if(parse == nullptr || sqlCmd == nullptr)
 		{
-			iRet = NULL_PARA_PTR;
+			iRet = EC_NULL_PARA_PTR;
 			break;
 		}
 		int res = mysql_query(conn,sqlCmd);

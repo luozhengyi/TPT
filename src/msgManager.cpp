@@ -47,6 +47,7 @@ bool MsgManager::ConstructMsg(msgtype type, unsigned char paramnum,...)
 		msg.head.paramnum = paramnum;
 		msg.head.msglen = sizeof(msg.head);
 		
+		bool bflag = true;
 		va_list arg;
 		va_start(arg,paramnum);
 		char* pch = NULL;
@@ -59,12 +60,17 @@ bool MsgManager::ConstructMsg(msgtype type, unsigned char paramnum,...)
 			pch = va_arg(arg,char*);
 			paramlen = strlen(pch) + 1;
 
-			strncpy(pParamInfo,pch,paramlen -1);
-
 			msg.head.msglen += paramlen;
+			if(msg.head.msglen > MEM_LEN)
+			{
+				bflag = false;
+				break;
+			}
+			strncpy(pParamInfo,pch,paramlen -1);
 		}
 		va_end(arg);
-		bRet = true;
+		if(bflag)
+			bRet = true;
 	}while(0);
 	
 	return bRet;	
@@ -88,11 +94,7 @@ bool MsgManager::DeconstructMsg()
 			std::cout<<pParamInfo<<std::endl;
 
 			paramlen = strlen(pParamInfo) + 1;
-			
-				
 		}
-
-
 		bRet = true;
 	}while(0);
 	return bRet;

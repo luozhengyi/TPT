@@ -10,7 +10,7 @@ int parse(MYSQL_RES* sqlRes)
 	{
 		if(sqlRes == nullptr)
 		{
-			iRet = NULL_PARA_PTR;
+			iRet = EC_NULL_PARA_PTR;
 			break;
 		}
 		my_ulonglong iRows = mysql_num_rows(sqlRes);

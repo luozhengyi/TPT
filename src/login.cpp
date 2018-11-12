@@ -26,7 +26,7 @@ int login::start()
 		fd = socket(AF_INET,SOCK_STREAM,0);	
 		if(fd < 0)
 		{
-			iRet = INVALID_FD;	//create socket fd failed
+			iRet = EC_INVALID_FD;	//create socket fd failed
 			break;
 		}
 
@@ -37,13 +37,13 @@ int login::start()
 		
 		if( bind(fd,(sockaddr*)&addrSrv,sizeof(sockaddr_in)) < 0)
 		{//bind: @ret 0:success -1:failed
-			iRet = BIND_FAILED;	//bind failed
+			iRet = EC_BIND_FAILED;	//bind failed
 			break;
 		}
 		
 		if(listen(fd,10) < 0)
 		{//listen: @ret 0:success -1:failed
-			iRet = LISTEN_FAILED;	//listen setup failed
+			iRet = EC_LISTEN_FAILED;	//listen setup failed
 			break;
 		}
 
@@ -55,7 +55,7 @@ int login::start()
 			clientfd = accept(fd,(sockaddr*)&addrClient,(socklen_t*)&len);
 			if(INVALID_SOCK == clientfd)
 			{
-				iRet = ACCEPT_FAILED;	//accept failed
+				iRet = EC_ACCEPT_FAILED;	//accept failed
 				break;
 			}
 
