@@ -1,9 +1,10 @@
+# TPT
 This program is used during team;
 TPT: team play talk
 
 
 
-compile steps:
+## compile steps:
            ~$ cd /usr/include
 /usr/include$ sudo -s
 [sudo] password for xx:******
