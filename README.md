@@ -5,7 +5,9 @@
 
 
 ## compile steps:
-           ~$ `cd /usr/include`
-/usr/include$ sudo -s
-[sudo] password for xx:******
-/usr/include$ ln -s ~/TPT/include TPT
+...
+           ~$ cd /usr/include<br>
+/usr/include$ sudo -s<br>
+[sudo] password for xx:******<br>
+/usr/include$ ln -s ~/TPT/include TPT<br>
+...
